@@ -1,9 +1,8 @@
-<p>draw works!</p>
-<div #parent style="height: 200px">
-  <canvas
-    id="responsive-canvas"
-    [height]="parent.offsetHeight"
-    [width]="parent.offsetWidth"
-    #myCanvas
-  ></canvas>
+<div class="draw-container">
+  <div class="draw-container__buttons-container">
+    <button (click)="onAddLine()">Add line</button>
+    <button (click)="onClear()">Clear</button>
+    <button (click)="onSave()">Save</button>
+  </div>
+  <div class="draw-container__canvas"><canvas id="fabricSurface"></canvas></div>
 </div>

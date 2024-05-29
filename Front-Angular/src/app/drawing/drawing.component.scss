@@ -1,0 +1,23 @@
+.draw-container {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  position: relative;
+  width: fit-content;
+  margin: 1rem;
+  padding: 1px;
+  background-color: #f0f0f0;
+
+  &__buttons-container {
+    grid-area: 1 / 1 / 2 / 2;
+
+    & button:last-child {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  &__canvas {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+}

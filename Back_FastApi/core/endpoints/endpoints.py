@@ -1,10 +1,10 @@
-from typing import Type
-
 from fastapi import APIRouter, Depends
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session as _Session
 
 from core.db_src.services import draw_services as services
-from core.db_src.schemas.schemas import Drawing
+from core.db_src.schemas.schemas import  Drawings
 from core.db_src.db.setting import get_db
 
 
@@ -15,8 +15,8 @@ router_draw = APIRouter(
 )
 
 
-@router_draw.get("/get", response_model=list[Drawing])
-async def get_drawings(offset: int = 0, limit: int = 25, db: _Session = Depends(get_db)) -> list:
+@router_draw.get("/get")
+async def get_drawings(offset: int = 0, limit: int = 25, db: _Session = Depends(get_db)):
     """
     Gets data about drawings from DB
     :param offset: how many rows should be missed from id=0
@@ -25,11 +25,12 @@ async def get_drawings(offset: int = 0, limit: int = 25, db: _Session = Depends(
     :return: list of Drawing
     """
     drawings = await services.get_drawings(db=db, offset=offset, limit=limit)
-    return drawings
+
+    return JSONResponse(content=jsonable_encoder(drawings))
 
 
 @router_draw.post("/create")
-async def create_drawing(drawing: str,
+async def create_drawing(drawing: Drawings,
                          db: _Session = Depends(get_db)):
     """
     Uses data passed by user to save drawing

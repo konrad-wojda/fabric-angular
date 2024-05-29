@@ -12,6 +12,6 @@ import { RouterModule } from '@angular/router';
 export class NavigationComponent {
   navigationItems: { routerLink: string; text: string }[] = [
     { routerLink: '/list', text: 'List' },
-    { routerLink: '/draw', text: 'Draw' },
+    { routerLink: '/draw', text: 'Draw new one' },
   ];
 }

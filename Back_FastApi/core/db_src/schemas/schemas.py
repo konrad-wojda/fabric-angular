@@ -1,3 +1,4 @@
+from typing import List
 from pydantic import BaseModel
 
 
@@ -7,3 +8,7 @@ class Drawing(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class Drawings(BaseModel):
+    drawing: List[dict]

@@ -3,6 +3,7 @@ from typing import Type
 from sqlalchemy.orm import Session as _Session
 
 from core.db_src.db_models import models
+from core.db_src.schemas import schemas
 
 
 async def get_drawings(db: _Session, offset: int = 0, limit: int = 25) -> list[Type[models.DrawModel]]:
@@ -18,14 +19,14 @@ async def get_drawings(db: _Session, offset: int = 0, limit: int = 25) -> list[T
     return drawings
 
 
-async def create_drawing(drawing: str, db: _Session) -> models.DrawModel:
+async def create_drawing(drawing: schemas.Drawings, db: _Session) -> models.DrawModel:
     """
     Creating new drawing in DB
-    :param drawing: data about drawing
+    :param drawing: data about drawings
     :param db: Session of DB
     :return: Data of created user
     """
-    draw_obj = models.DrawModel(drawing=drawing)
+    draw_obj = models.DrawModel(drawing=str(drawing.drawing))
     db.add(draw_obj)
     db.commit()
     db.refresh(draw_obj)

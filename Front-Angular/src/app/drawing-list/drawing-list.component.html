@@ -1,1 +1,12 @@
-<p>drawing-list works!</p>
+<mat-list>
+  <mat-list-item *ngFor="let drawing of drawings">
+    <ng-template [ngIf]="drawing?.id_drawing">
+      {{ drawing.id_drawing }}
+      <mat-icon (click)="selectDrawing(drawing.id_drawing - 1)"
+        >visibility</mat-icon
+      >
+    </ng-template>
+  </mat-list-item>
+</mat-list>
+
+<canvas id="fabricSurface"></canvas>
