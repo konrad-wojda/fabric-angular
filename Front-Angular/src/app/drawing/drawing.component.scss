@@ -1,19 +1,25 @@
 .draw-container {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 9rem 1fr;
   position: relative;
   width: fit-content;
-  margin: 1rem;
-  padding: 1px;
+  padding: 1rem;
+  padding-left: 0;
   background-color: #f0f0f0;
 
   &__buttons-container {
     grid-area: 1 / 1 / 2 / 2;
+    position: relative;
 
-    & button:last-child {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+    & button {
+      width: 80%;
+      margin: 1rem 10% 1rem 10%;
+
+      &:last-child {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
     }
   }
 

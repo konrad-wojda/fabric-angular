@@ -7,7 +7,7 @@ class Drawing(BaseModel):
     drawing: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class Drawings(BaseModel):

@@ -12,3 +12,7 @@ export const canvasSize: CanvasSize = {
   WIDTH: 400,
   HEIGHT: 400,
 };
+
+export enum drawingRedirect {
+  redirect = 'Redirect',
+}

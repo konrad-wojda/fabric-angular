@@ -1,32 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { fabric } from 'fabric';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DrawingService } from '../shared/drawing-service';
 import { CanvasSize, canvasSize } from '../shared/drawing.models';
+import { MatButtonModule } from '@angular/material/button';
+import { CanvasComponent } from '../canvas/canvas.component';
+import { CommonModule } from '@angular/common';
+import { SnackbarService } from '../shared/snackbar-service';
 
 @Component({
   selector: 'app-drawing',
   standalone: true,
-  imports: [MatIconModule, MatToolbarModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    CanvasComponent,
+  ],
   templateUrl: './drawing.component.html',
   styleUrl: './drawing.component.scss',
 })
-export class DrawingComponent implements OnInit {
+export class DrawingComponent {
   canvas!: fabric.Canvas;
   canvasSize: CanvasSize = canvasSize;
+  isFreeDrawing: boolean = false;
 
-  constructor(private drawingService: DrawingService) {}
+  constructor(
+    private drawingService: DrawingService,
+    private snackbarService: SnackbarService
+  ) {}
 
-  ngOnInit(): void {
-    this.canvas = new fabric.Canvas('fabricSurface');
-    this.canvas.backgroundColor = 'white';
-    this.canvas.setWidth(this.canvasSize.WIDTH);
-    this.canvas.setHeight(this.canvasSize.HEIGHT);
-  }
-
-  onClear(): void {
-    this.canvas.clear();
+  handleCanvasReady(canvas: fabric.Canvas): void {
+    this.canvas = canvas;
   }
 
   onAddLine(): void {
@@ -42,13 +49,22 @@ export class DrawingComponent implements OnInit {
     this.canvas.add(line);
   }
 
+  onFreeDraw(): void {
+    this.isFreeDrawing = !this.isFreeDrawing;
+    this.canvas.isDrawingMode = this.isFreeDrawing;
+  }
+
+  onClear(): void {
+    this.canvas.clear();
+  }
+
   onSave(): void {
     if (this.canvas.toJSON().objects.length === 0) return;
-
-    this.drawingService
-      .postDrawing(this.canvas.toJSON().objects)
-      .subscribe(() => {
-        this.onClear();
-      });
+    // @TODO (konrad) uncomment right one.
+    this.drawingService.postDrawing(this.canvas.toJSON().objects).subscribe();
+    // this.snackbarService.showSnackbar(
+    //   'Drawing saved successfully!',
+    //   'Redirect'
+    // );
   }
 }

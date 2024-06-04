@@ -1,10 +1,13 @@
-<nav>
+<nav class="nav">
   <a
+    mat-button
     *ngFor="let item of navigationItems"
     [routerLink]="item.routerLink"
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }"
+    class="nav__item"
   >
     {{ item.text }}
+    <mat-icon>{{ item.icon }}</mat-icon>
   </a>
 </nav>

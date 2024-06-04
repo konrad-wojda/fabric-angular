@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
-import { Drawing } from './drawing.models';
+import { Drawing, drawingRedirect } from './drawing.models';
+import { SnackbarService } from './snackbar-service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,10 @@ import { Drawing } from './drawing.models';
 export class DrawingService {
   private apiUrlDrawings = 'http://localhost:8000/api/drawings';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private snackbarService: SnackbarService
+  ) {}
 
   getDrawings(offset = 0, limit = 25): Observable<Drawing[]> {
     return this.http
@@ -29,12 +33,16 @@ export class DrawingService {
       .post<Drawing>(`${this.apiUrlDrawings}/create`, { drawing: payload })
       .pipe(
         map((response) => {
-          // Check if the response contains the expected data
+          this.snackbarService.showSnackbar(
+            'Drawing saved successfully!',
+            drawingRedirect.redirect
+          );
           return response && response.id_drawing !== undefined;
         }),
         catchError((error) => {
           console.error('Error:', error);
-          return of(false); // Return false for error cases
+          this.snackbarService.showSnackbar('Drawing was not saved!', 'OK ❌');
+          return of(false);
         })
       );
   }
