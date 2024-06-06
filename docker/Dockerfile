@@ -1,5 +1,5 @@
 ARG     PYTHON_VER=3.10
-ARG     NODE_VER=latest
+ARG     NODE_VER=20.13.1
 
 FROM    node:${NODE_VER} AS build 
 
@@ -8,11 +8,11 @@ WORKDIR /app
 COPY    Front-Angular/ /app
 
 RUN     npm install
-RUN     npm run build --prod
+RUN     npm run build --omit=dev
 
 FROM    nginx:alpine AS nginx
 
-COPY    --from=build /app/dist/front-angular /usr/share/nginx/html
+COPY    --from=build /app/dist/front-angular/browser /usr/share/nginx/html
 
 COPY    /docker/nginx.conf  /etc/nginx/conf.d/default.conf
 

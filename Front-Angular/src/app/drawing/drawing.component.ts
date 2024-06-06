@@ -60,11 +60,11 @@ export class DrawingComponent {
 
   onSave(): void {
     if (this.canvas.toJSON().objects.length === 0) return;
-    // @TODO (konrad) uncomment right one.
+
     this.drawingService.postDrawing(this.canvas.toJSON().objects).subscribe();
-    // this.snackbarService.showSnackbar(
-    //   'Drawing saved successfully!',
-    //   'Redirect'
-    // );
+    this.snackbarService.showSnackbar(
+      'Drawing saved successfully!',
+      'Redirect'
+    );
   }
 }

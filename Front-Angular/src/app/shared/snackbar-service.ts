@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { drawingRedirect } from './drawing.models';
+import { RoutePath } from '../app.routes';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class SnackbarService {
 
     if (action === drawingRedirect.redirect) {
       snackBarRef.onAction().subscribe(() => {
-        this.router.navigateByUrl('/list');
+        this.router.navigateByUrl(RoutePath.list);
       });
     }
   }

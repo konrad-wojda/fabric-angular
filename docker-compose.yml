@@ -1,47 +1,29 @@
 version: "3.8"
 services:
-    angular-front:
+    angular-frontend:
         build:
             context: ./
             dockerfile: ./docker/Dockerfile
             target: nginx
-        container_name: frontend-intendant
+        container_name: frontend-drawing
         networks:
-            - intendant-network
+            - drawing-network
         ports:
             - 80:80
+        depends_on:
+            - fast-api-backend
 
-    fast-api-back:
+    fast-api-backend:
         build:
             context: ./
             dockerfile: ./docker/Dockerfile
             target: fast-api-back
-        container_name: backend-intendant
-        env_file:
-            - ./Back_FastApi/.env
+        container_name: backend-drawing
         networks:
-            - intendant-network
+            - drawing-network
         ports:
             - 8000:8000
 
-    postgresql-db:
-        container_name: db-intendant
-        image: postgres:14.6
-        restart: on-failure
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: 123
-            POSTGRES_DB: IntendantJob
-            PGDAT: /var/lib/postgresql/data
-        volumes:
-            - ./postgres:/var/lib/postgresql/data
-        networks:
-            - intendant-network
-        ports:
-            - 5432:5432
-
 networks:
-    intendant-network:
+    drawing-network:
         driver: bridge
-volumes:
-    postgres: {}
