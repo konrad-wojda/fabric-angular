@@ -1,9 +1,20 @@
-<p>draw works!</p>
-<div #parent style="height: 200px">
-  <canvas
-    id="responsive-canvas"
-    [height]="parent.offsetHeight"
-    [width]="parent.offsetWidth"
-    #myCanvas
-  ></canvas>
+<div class="draw-container">
+  <div class="draw-container__buttons-container">
+    <button mat-stroked-button (click)="onAddLine()">Add line</button>
+
+    <button *ngIf="!isFreeDrawing" mat-stroked-button (click)="onFreeDraw()">
+      Free drawing
+    </button>
+    <button *ngIf="isFreeDrawing" mat-flat-button (click)="onFreeDraw()">
+      Free drawing
+    </button>
+
+    <button mat-stroked-button (click)="onClear()">Clear</button>
+
+    <button mat-flat-button (click)="onSave()">Save</button>
+  </div>
+
+  <div class="draw-container__canvas">
+    <app-canvas (canvasReady)="handleCanvasReady($event)"></app-canvas>
+  </div>
 </div>

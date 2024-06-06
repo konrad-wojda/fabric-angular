@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@include mat.core();
+
+$my-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$green-palette,
+    ),
+  )
+);
+
+html {
+  @include mat.all-component-themes($my-theme);
+  font-size: 10px;
+}
+
+body {
+  margin: auto;
+  min-width: 50.4rem;
+  max-width: 25%;
+  background-color: #c5e0be;
+}
