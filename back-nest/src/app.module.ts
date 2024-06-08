@@ -10,7 +10,7 @@ import { Drawings } from './drawings/drawings.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'database.db',
-      entities: [Drawings], //__dirname + '/../**/*.entity{.ts,.js}''
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
     DrawingsModule,

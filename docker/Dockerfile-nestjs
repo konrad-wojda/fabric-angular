@@ -1,0 +1,17 @@
+ARG     NODE_VER=20.13.1
+
+FROM    node:${NODE_VER} AS build
+
+WORKDIR /usr/src/app
+
+COPY    back-nest/package*.json ./
+
+RUN 	npm install
+
+COPY 	back-nest/ .
+
+RUN 	npm run build
+
+EXPOSE  8000
+
+CMD     [ "node", "dist/main.js" ]
