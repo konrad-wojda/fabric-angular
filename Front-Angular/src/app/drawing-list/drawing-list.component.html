@@ -4,6 +4,7 @@
       <th mat-header-cell *matHeaderCellDef>No.</th>
       <td mat-cell *matCellDef="let element">{{ element.id_drawing }}</td>
     </ng-container>
+
     <ng-container matColumnDef="visibility">
       <th mat-header-cell *matHeaderCellDef>Show on canvas</th>
       <td mat-cell *matCellDef="let element">
@@ -14,6 +15,7 @@
         >
       </td>
     </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>

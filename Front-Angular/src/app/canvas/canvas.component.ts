@@ -1,3 +1,5 @@
+import { fabric } from 'fabric';
+
 import {
   Component,
   ElementRef,
@@ -5,7 +7,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { fabric } from 'fabric';
+
 import { CanvasSize, canvasSize } from '../shared/drawing.models';
 
 @Component({

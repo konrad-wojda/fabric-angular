@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { DrawingService } from '../shared/drawing-service';
 import { Drawing } from '../shared/drawing.models';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CanvasComponent } from '../canvas/canvas.component';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { Canvas } from 'fabric/fabric-impl';
 
 @Component({
   selector: 'app-drawing-list',

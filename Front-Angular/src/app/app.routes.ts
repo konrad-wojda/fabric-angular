@@ -20,12 +20,4 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./drawing/drawing.component').then((m) => m.DrawingComponent),
   },
-  // [
-  //
-  //   { path: RoutePath.list, component: DrawingListComponent },
-  //   //   { path: RoutePath.draw, component: DrawingComponent },
-  // ],
-
-  //   { path: RoutePath.list, component: DrawingListComponent },
-  //   { path: RoutePath.draw, component: DrawingComponent },
 ];
