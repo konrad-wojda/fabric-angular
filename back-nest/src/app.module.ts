@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { DrawingsModule } from './drawings/drawings.module';
-import { Drawings } from './drawings/drawings.entity';
 
 @Module({
   imports: [
