@@ -13,6 +13,12 @@ This repository contains a recruitment task related to Angular. The project leve
 3. Start the Docker containers: </br>
    docker-compose up
 
+## Docker-composes:
+
+There're two .yml files, one for building FastAPI as backend (docker-compose-fastapi.yml) and other is Nest.JS (default one). </br>
+If You want to play with FastAPI instead of Nest.JS just change name of docker-compose.yml to something like docker-compose-nestjs.yml,
+and than docker-compose-fastapi.yml rename to docker-compose.yml. That's all about BE swapping.
+
 ## URLs:
 
 FE: localhost/list </br>
