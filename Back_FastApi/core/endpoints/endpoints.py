@@ -29,7 +29,7 @@ async def get_drawings(offset: int = 0, limit: int = 25, db: _Session = Depends(
     return JSONResponse(content=jsonable_encoder(drawings))
 
 
-@router_draw.post("/create")
+@router_draw.post("/create", status_code=201)
 async def create_drawing(drawing: Drawings,
                          db: _Session = Depends(get_db)):
     """
