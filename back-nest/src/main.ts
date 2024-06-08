@@ -6,10 +6,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   const config = new DocumentBuilder()
-    .setTitle('Drawings')
-    .setDescription('The drawings API description')
+    .setTitle('Nest.JS')
+    .setDescription('The drawings API in Nest.JS')
     .setVersion('0.1.0')
-    .addTag('drawings')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

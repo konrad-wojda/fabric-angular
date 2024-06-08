@@ -10,16 +10,19 @@ services:
             - drawing-network
         ports:
             - 80:80
+        depends_on:
+            - fast-api-backend
 
-    back-nest:
+    fast-api-backend:
         build:
             context: ./
-            dockerfile: ./docker/Dockerfile-nestjs
-        container_name: back-nest-drawing
+            dockerfile: ./docker/Dockerfile-fastapi
+            target: fast-api-back
+        container_name: back-fastapi-drawing
+        networks:
+            - drawing-network
         ports:
             - 8000:8000
-        depends_on:
-            - angular-frontend
 
 networks:
     drawing-network:
