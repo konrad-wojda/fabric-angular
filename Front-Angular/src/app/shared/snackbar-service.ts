@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { drawingRedirect } from './drawing.models';
 import { RoutePath } from '../app.routes';
+import { drawingRedirect } from './drawing.models';
 
 @Injectable({
   providedIn: 'root',

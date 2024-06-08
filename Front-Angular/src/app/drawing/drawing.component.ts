@@ -1,15 +1,15 @@
-import { tap } from 'rxjs';
 import { fabric } from 'fabric';
+import { tap } from 'rxjs';
 
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { CanvasComponent } from '../canvas/canvas.component';
 import { DrawingService } from '../shared/drawing-service';
 import { CanvasSize, canvasSize } from '../shared/drawing.models';
-import { CanvasComponent } from '../canvas/canvas.component';
 
 @Component({
   selector: 'app-drawing',
